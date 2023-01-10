@@ -13,6 +13,7 @@ public:
 		delete[] _IAdata;
 	}
 	IntegerArray(int length);
+
 	void copy(int array[]);
 	int& getElem(int index);
 	void clear();

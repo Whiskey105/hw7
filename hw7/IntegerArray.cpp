@@ -100,6 +100,6 @@ void IntegerArray::addLastElem(int elem)
 
 void IntegerArray::removeElem(int index)
 {
-
+    _IAdata[index] = nullptr;
 }
 
