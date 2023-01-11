@@ -10,7 +10,7 @@ int main ()
 
 	try
 	{
-		IntegerArray* container =  dynamic_cast<IntegerArray*>(container(containerLength));
+		IntegerArray container(containerLength);
 	}
 	catch(const bad_cast& e)
 	{
