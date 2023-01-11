@@ -2,14 +2,15 @@
 
 IntegerArray::IntegerArray(int length) : _IALength{length}
 {
-    if (length >= 0)
+    _IAdata = new int[length];
+
+    /*if (length >= 0)
     {
-        _IAdata = new int[length];
     }
     else
     {
         throw;
-    }
+    }*/
 }
 
 void IntegerArray::copy(int array[])

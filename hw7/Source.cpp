@@ -12,7 +12,7 @@ int main ()
 	{
 		IntegerArray container(containerLength);
 	}
-	catch(const bad_cast& e)
+	catch(const bad_array_new_length& e)
 	{
 		cout << e.what()<< endl;
 	}
