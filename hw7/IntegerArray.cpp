@@ -86,7 +86,7 @@ void IntegerArray::setNewLength(int newLength)
 
     int* data{ new int[newLength] };
 
-    int elementsToCopy;
+    int elementsToCopy = 0;
 
     if (_IALength > 0)
     {
