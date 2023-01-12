@@ -14,15 +14,7 @@ IntegerArray::IntegerArray(int length) : _IALength{length}
     
 }
 
-void IntegerArray::copy(int array[])
-{
-    int arrSize = sizeof(array) / sizeof(array[0]);
 
-    for (int i = 0; i < arrSize; i++)
-    {
-        _IAdata[i] = array[i];
-    }
-}
 
 int& IntegerArray::getElem(int index)
 {
@@ -30,7 +22,7 @@ int& IntegerArray::getElem(int index)
     {
         if (index >= _IALength)
         {
-            throw range_error("range_error");
+            throw range_error("bad_range");
         }
         else
         {
@@ -167,6 +159,57 @@ void IntegerArray::addLastElem(int elem)
 
 void IntegerArray::removeElem(int index)
 {
-    _IAdata[index] = 0; //err
+
+    try
+    {
+        if (index < 0 || index >= _IALength)
+        {
+            throw range_error("bad_range");
+        }
+    }
+    catch (const range_error& e)
+    {
+        cout << "Exception: " << e.what() << endl;
+        return;
+    }
+
+    if (_IALength == 1)
+    {
+        clear();
+        return;
+    }
+
+   
+    int* data = new int[_IALength - 1];
+
+
+    for (int before = 0; before < index; ++before)
+    {
+        data[before] = _IAdata[before];
+    }
+
+    for (int after = index + 1; after < _IALength; ++after)
+    {
+        data[after - 1] = _IAdata[after];
+    }
+
+    delete[] _IAdata;
+    _IAdata = data;
+    --_IALength;
+}
+
+void IntegerArray::searchElem(int elem)
+{
+    int elemIndex;
+    for (elemIndex = 0; elemIndex < _IALength; elemIndex++)
+    {
+        if (_IAdata[elemIndex] == elem)
+        {
+            cout << "Element " << elem << " found at index: " << elemIndex << endl;
+            return;
+        }
+    }
+
+    cout << "Element " << elem << " is not present in the array" << endl;
 }
 

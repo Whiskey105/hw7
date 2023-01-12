@@ -14,9 +14,9 @@ public:
 	{
 		delete[] _IAdata;
 	}
+	
 	IntegerArray(int length);
 
-	void copy(int array[]);
 	int& getElem(int index);
 	void fill(int start);
 	void getData();
@@ -26,7 +26,7 @@ public:
 	void addFirstElem(int elem);
 	void addLastElem(int elem);
 	void removeElem(int index);
-	
+	void searchElem(int elem);
 
 
 
