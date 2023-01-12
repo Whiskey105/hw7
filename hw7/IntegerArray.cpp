@@ -74,7 +74,9 @@ void IntegerArray::clear()
 void IntegerArray::setNewLength(int newLength)
 {
     if (newLength == _IALength)
+    {
         return;
+    }
 
     if (newLength <= 0)
     {
@@ -112,7 +114,23 @@ void IntegerArray::setNewLength(int newLength)
 
 void IntegerArray::insertElem(int elem, int index)
 {
-    _IAdata[index] = elem;
+    try
+    {
+        if (index >= _IALength)
+        {
+            throw range_error("range_error");
+        }
+        else
+        {
+            _IAdata[index] = elem;
+            return;
+        }
+    }
+    catch (const range_error& e)
+    {
+        cout << "Exception: " << e.what() << endl;
+    }
+    
 }
 
 void IntegerArray::addFirstElem(int elem)

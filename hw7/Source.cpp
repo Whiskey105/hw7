@@ -17,6 +17,8 @@ int main ()
 
 	container.getData();
 	
+	container.getElem(7);
+
 	container.getElem(4);
 
 
