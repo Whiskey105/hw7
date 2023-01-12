@@ -1,16 +1,17 @@
+#include <iostream>
 #include "IntegerArray.h"
 
 IntegerArray::IntegerArray(int length) : _IALength{length}
 {
-    _IAdata = new int[length];
-
-    /*if (length >= 0)
+    try
     {
+        _IAdata = new int[length];
     }
-    else
+    catch(const bad_array_new_length& e)
     {
-        throw;
-    }*/
+        cout << "Exception: " << e.what()<< endl;
+    }
+    
 }
 
 void IntegerArray::copy(int array[])
@@ -25,7 +26,40 @@ void IntegerArray::copy(int array[])
 
 int& IntegerArray::getElem(int index)
 {
-	return _IAdata[index];
+    try
+    {
+        if (index >= _IALength)
+        {
+            throw range_error("range_error");
+        }
+        else
+        {
+            cout << _IAdata[index] << endl;
+            return _IAdata[index];
+        }
+    }
+    catch (const range_error& e)
+    {
+        cout << "Exception: " << e.what() << endl;
+    }
+
+    
+}
+
+void IntegerArray::fill(int start)
+{
+    for (int i = 0; i < _IALength; i++)
+    {
+        _IAdata[i] = start++;
+    }
+}
+
+void IntegerArray::getData()
+{
+    for (int i = 0; i < _IALength; i++)
+    {
+        cout << _IAdata[i] << endl;
+    }
 }
 
 
@@ -50,15 +84,25 @@ void IntegerArray::setNewLength(int newLength)
 
     int* data{ new int[newLength] };
 
+    int elementsToCopy;
+
     if (_IALength > 0)
     {
-        int elementsToCopy{ (newLength > _IALength) ? _IALength : newLength };
+        if (newLength > _IALength)
+        {
+            elementsToCopy = newLength;
+        }
+        else
+        {
+            elementsToCopy = _IALength;
+        }
+    };
 
         for (int index{ 0 }; index < elementsToCopy; ++index)
         {
             data[index] = _IAdata[index];
         }
-    }
+ 
 
     delete[] _IAdata;
 

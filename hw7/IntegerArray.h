@@ -18,6 +18,8 @@ public:
 
 	void copy(int array[]);
 	int& getElem(int index);
+	void fill(int start);
+	void getData();
 	void clear();
 	void setNewLength(int newLength);
 	void insertElem(int elem, int index);

@@ -7,15 +7,18 @@ int main ()
 {
 	int containerLength = -1;
 
+	IntegerArray badRange(containerLength);
 
-	try
-	{
-		IntegerArray container(containerLength);
-	}
-	catch(const bad_array_new_length& e)
-	{
-		cout << e.what()<< endl;
-	}
+	containerLength = 5;
+
+	IntegerArray container(containerLength);
+
+	container.fill(0);
+
+	container.getData();
+	
+	container.getElem(4);
+
 
 	return 0;
 }
